@@ -1,0 +1,103 @@
+<html>
+<body></body>
+<script>
+//alert('test');
+var divOut = window.document.createElement("div");
+
+window.document.body.appendChild(divOut);
+divOut.style.position = 'absolute';
+divOut.style.left = 100;
+divOut.style.top = 100;
+divOut.style.width = 300;
+divOut.style.height = 300;
+divOut.style.borderStyle = 'solid';
+//divOut.style.borderWidth = 1;
+
+var divIn = [];
+for (var i = 0; i < 50; i++) {
+    //divOut.appendChild(aa());
+    divIn[i] = window.document.createElement("div");
+    divIn[i].setAttribute("id", i);
+    divOut.appendChild(divIn[i]);
+    var parentOfDivIn = window.document.getElementById(String(i)).parentNode;
+    // divIn[i].style.left =  Math.random() * divIn[i].parentNode().style.width;
+    //console.log(parentOfDivIn.clientWidth);
+    
+    divIn[i].style.position = 'absolute';
+    //divIn[i].style.position = 'relative';
+    divIn[i].style.width = 30;
+    divIn[i].style.height = 30;
+    divIn[i].style.borderRadius = '50%';
+    //console.log(parentOfDivIn.clientLeft);
+    //divIn[i].style.left =  parentOfDivIn.clientLeft +Math.round( Math.random() * parentOfDivIn.clientWidth);
+    //console.log(parentOfDivIn.clientWidth);
+    divIn[i].style.left =  Math.round( Math.random() * (parentOfDivIn.clientWidth - divIn[i].clientWidth));
+    divIn[i].style.top =  Math.round( Math.random() * (parentOfDivIn.clientHeight - divIn[i].clientHeight));
+
+    var randomColor1 = Math.round( Math.random() * 255);
+    var randomColor2 = Math.round( Math.random() * 255);
+    var randomColor3 = Math.round( Math.random() * 255);
+
+    //var rc = color( Math.random()%255, Math.random() % 255, Math.random() % 255);
+    divIn[i].style.backgroundColor = 'rgb('+randomColor1+', '+randomColor2+', '+randomColor3+')';  // '#fffff'
+
+	var speedY = Math.round(Math.random() * 4) +1;
+	var speedX = Math.round(Math.random() * 4) + 1;
+    move(i, speedY, speedX);
+}
+
+function move(i, speedY, speedX) {
+	var ball = window.document.getElementById(String(i));
+	var parentOfBall = ball.parentNode;
+
+
+	//console.log(ball);
+	//console.log(ball.parentNode);
+	//console.log(parentOfBall);
+	//if (i == 1)
+	//console.log(parseInt(ball.style.left));
+	//console.log(parentOfBall.clientWidth);
+	//console.log(ball.stytle.)
+	if ( ( parseInt(ball.style.left) <= 0 && speedX < 0) || ( parseInt(ball.style.left) >= parentOfBall.clientWidth - parseInt(ball.style.width) && speedX > 0) ) {
+		speedX = -speedX;
+		//console.log('hi');
+	}
+
+	if ( (parseInt(ball.style.top) <= 0 && speedY < 0) || ( parseInt(ball.style.top) >= parentOfBall.clientHeight - parseInt(ball.style.height) && speedY > 0)) {
+		speedY = -speedY;
+	}
+
+	var x = parseInt(ball.style.left) + speedX;
+	ball.style.left = x + 'px';
+
+	var y = parseInt(ball.style.top) + speedY;
+	ball.style.top = y + 'px';
+	//if (x <= 0 || x >= bal)
+	//ball.style.top = parseInt(ball.style.top) + speedY + 'px';
+	var animate = setTimeout(move, 20, i, speedY, speedX);
+}
+
+/*
+function aa() {
+    var divIn = window.document.createElement("div");
+    divIn.style.left =  Math.random() * 255;
+    divIn.style.top = Math.round( Math.random() * 255);
+    divIn.style.position = 'absolute';
+    divIn.style.width = 30;
+    divIn.style.height = 30;
+    divIn.style.borderRadius = '50%';
+    var randomColor1 = Math.round( Math.random() * 255);
+    var randomColor2 = Math.round( Math.random() * 255);
+    var randomColor3 = Math.round( Math.random() * 255);
+
+    //var rc = color( Math.random()%255, Math.random() % 255, Math.random() % 255);
+    divIn.style.backgroundColor = 'rgb('+randomColor1+', '+randomColor2+', '+randomColor3+')';  // '#fffff'
+    //divIn.style.backgroundColor = '#'+ 
+
+    return divIn;
+};
+*/
+
+</script>
+
+</html>

@@ -1,0 +1,71 @@
+<html>
+<head>
+	<script>
+
+	// data만 처리하는 함수는 정말 데이타만 처리해야한다.
+	// view와 data가 분리되어야 한다.
+		var liClass = function(id, text) {
+			this.$htmlElement = document.createElement("li");
+			this.$htmlElement.id = id;
+			this.$htmlElement.innerHTML = text;
+			this.bLineThrough = false;
+		}
+		liClass.prototype.getEl = function() {
+			return this.$htmlElement;
+		}
+
+		var ulClass = function(id) {
+			this.$htmlElement = document.createElement("ul");
+			this.$htmlElement.id = id;
+			this.liArray = [];
+
+		}
+		ulClass.prototype.getEl = function() {
+			return this.$htmlElement;
+		}
+		ulClass.prototype.addLI = function(text) {
+			var numOfLI = this.liArray.length;
+			var liObject = new liClass(numOfLI, text);
+			this.$htmlElement.appendChild(liObject.getEl());
+			this.liArray.push(liObject);
+		}
+		ulClass.prototype.getLIById = function(i) {
+			return this.liArray[i];
+		}
+	</script>
+</head>
+<body>
+	<input id="inputList" type="text">
+	<br />
+	<!-- <ul id="list"></ul> -->
+</body>
+<script>
+	var inputHtml = document.getElementById("inputList");
+	var ulObject = new ulClass("list");
+	document.body.appendChild(ulObject.getEl());
+	// console.log(inputHtml);
+	inputHtml.onkeyup =  function(e) {
+		//console.log(e);
+		if (e.keyCode==13 && e.target.value != "") {
+			var data = e.target.value;
+			ulObject.addLI(data);
+			e.target.value = "";
+		}
+	}
+
+	ulObject.$htmlElement.onclick = function(e) {
+		if (e.target.tagName == "LI") {
+			//console.log(e.target.id);
+			var liObject = ulObject.getLIById(e.target.id);
+			//console.log(liObject);
+
+			console.log(liObject.bLineThrough);
+
+			liObject.bLineThrough != liObject.bLineThrough;
+			console.log(liObject.bLineThrough);
+			(liObject.bLineThrough) ? liObject.$htmlElement.style.textDecoration = 'line-through' : liObject.$htmlElement.style.textDecoration='none';
+
+		}
+	}
+</script>
+</html>

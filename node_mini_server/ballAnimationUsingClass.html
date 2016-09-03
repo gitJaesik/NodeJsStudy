@@ -1,0 +1,82 @@
+<html>
+<body></body>
+<script>
+var Ball = function($container) {
+	this.$parent = $container;
+	this.$htmlElement = window.document.createElement("div");
+	this.$htmlElement.style.position = 'absolute';
+	this.$htmlElement.style.width = 15;
+	this.$htmlElement.style.height = 15;
+	this.$htmlElement.style.borderRadius = '50%';
+	this.$htmlElement.style.left = Math.round( Math.random() * ($container.clientWidth - parseInt(this.$htmlElement.style.width)));
+	this.$htmlElement.style.top = Math.round( Math.random() * ($container.clientHeight - parseInt(this.$htmlElement.style.height)));
+
+	var randomColor1 = Math.round( Math.random() * 255);
+    var randomColor2 = Math.round( Math.random() * 255);
+    var randomColor3 = Math.round( Math.random() * 255);
+	this.$htmlElement.style.backgroundColor = 'rgb('+randomColor1+', '+randomColor2+', '+randomColor3+')';  // '#fffff'
+	$container.appendChild(this.$htmlElement);
+
+	this.x = parseInt(this.$htmlElement.style.left);
+	this.y = parseInt(this.$htmlElement.style.top);
+	this.vx = Math.round(Math.random() * 4) +1;
+	this.vy = Math.round(Math.random() * 4) +1;
+	
+}
+
+
+Ball.prototype.move = function() {
+	//console.log(this);
+		if ( ( this.x <= 0 && this.vx < 0) || ( this.x >= this.$parent.clientWidth - this.$htmlElement.clientWidth && this.vx > 0) ) {
+			this.vx = -this.vx;
+		}
+
+		if ( (this.y <= 0 && this.vy < 0) || ( this.y >= this.$parent.clientHeight - this.$htmlElement.clientHeight && this.vy > 0)) {
+			this.vy = -this.vy;
+		}
+
+		this.x = this.x + this.vx;
+		this.$htmlElement.style.left = this.x + 'px';
+
+		this.y = this.y + this.vy;
+		this.$htmlElement.style.top = this.y + 'px';
+
+		//var animatesetInterval(this.move(), 2000);
+		//var animate = setTimeout(this.move, 20);
+}
+
+//Ball.prototype.moveSet = function() { setInterval(this., repeat);}
+
+
+</script>
+<script>
+var divOut = window.document.createElement("div");
+
+window.document.body.appendChild(divOut);
+divOut.style.position = 'absolute';
+divOut.style.left = 100;
+divOut.style.top = 100;
+divOut.style.width = 300;
+divOut.style.height = 300;
+divOut.style.borderStyle = 'solid';
+
+var numberOfBall = 50;
+//var ballInstance = [];
+var allOfBall = [];
+for (var i = 0; i < numberOfBall; i++) {
+	var ballInstance = new Ball(divOut);
+	allOfBall.push(ballInstance);
+	//ballInstance.move();
+}
+
+setInterval(function() { 
+	for (var i = 0; i < allOfBall.length; i++) {
+		//console.log(i);
+		//ballInstance[i].move();
+		allOfBall[i].move();
+	}
+}, 20);
+
+</script>
+
+</html>

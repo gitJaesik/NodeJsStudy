@@ -1,0 +1,94 @@
+<html>
+<body></body>
+<script>
+var rn = function(num) {
+	return Math.round(Math.random() * num);
+}
+
+var Ball = function(x, y, vx, vy, sizeX, sizeY, widthRange, heightRange) {
+	// 데이터 파트
+	this.x = x;
+	this.y = y;
+	this.vx = vx;	// 확장성, 밖에서 공의 속도를 조절 할 수 있어야 한다.
+	this.vy = vy;
+	this.widthRange = widthRange;
+	this.heightRange = heightRange;
+
+	// View 파트
+	this.$htmlElement = window.document.createElement("div");
+	this.$htmlElement.style.position = 'absolute';
+	this.$htmlElement.style.width = (sizeX || 15);
+	this.$htmlElement.style.height = (sizeY || 15);
+	this.$htmlElement.style.borderRadius = '50%';
+	this.$htmlElement.style.left = this.x;
+	this.$htmlElement.style.top = this.y;
+
+	var randomColor1 = rn(255);
+    var randomColor2 = rn(255);
+    var randomColor3 = rn(255);
+	this.$htmlElement.style.backgroundColor = 'rgb('+randomColor1+', '+randomColor2+', '+randomColor3+')';  // '#fffff'
+}
+
+
+Ball.prototype.move = function() {
+		if ( ( this.x <= 0 && this.vx < 0) || ( this.x >= this.widthRange - this.$htmlElement.clientWidth && this.vx > 0) ) {
+			this.vx = -this.vx;
+		}
+
+		if ( (this.y <= 0 && this.vy < 0) || ( this.y >= this.heightRange - this.$htmlElement.clientHeight && this.vy > 0)) {
+			this.vy = -this.vy;
+		}
+
+		this.x = this.x + this.vx;
+		this.$htmlElement.style.left = this.x + 'px';
+
+		this.y = this.y + this.vy;
+		this.$htmlElement.style.top = this.y + 'px';
+}
+
+Ball.prototype.GetEl = function() { return this.$htmlElement; };
+
+var Boxes = function(ballCnt, x, y, sizeX, sizeY) {
+	this.$htmlElement = window.document.createElement("div");
+	this.$htmlElement.style.position = 'absolute';
+	this.$htmlElement.style.left = (x || 100);
+	this.$htmlElement.style.top = (y || 100);
+	this.$htmlElement.style.width = (sizeX || 300);
+	this.$htmlElement.style.height = (sizeY || 300);
+	this.$htmlElement.style.borderStyle = 'solid';
+
+	this.balls = [];
+	for (var i = 0; i < ballCnt; i++) {
+		var ballSizeX = 15;
+		var ballSizeY = 15;
+		var x = rn(parseInt(this.$htmlElement.style.width) - ballSizeX);
+		var y = rn(parseInt(this.$htmlElement.style.height) - ballSizeY);
+		var vx = rn(10) + 1;
+		var vy = rn(10) + 1;
+		var ballInstance = new Ball(x, y, vx, vy, ballSizeX, ballSizeY, parseInt(this.$htmlElement.style.width), parseInt(this.$htmlElement.style.height));
+		this.balls.push(ballInstance);
+		this.$htmlElement.appendChild(ballInstance.GetEl());
+	}
+}
+
+Boxes.prototype.moveBalls = function() {
+	for (var i = 0; i < this.balls.length; i++) {
+		var ball = this.balls[i];
+		ball.move();
+	}
+}
+
+Boxes.prototype.GetEl = function() { return this.$htmlElement; };
+
+</script>
+<script>
+var box1 = new Boxes(100);
+window.document.body.appendChild(box1.GetEl());
+
+setInterval(function() {
+	box1.moveBalls();
+}, 20);
+
+</script>
+
+</html>

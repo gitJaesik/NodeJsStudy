@@ -1,0 +1,4 @@
+Write these codes to deploy
+1. npm install
+2. node app.js
+3. open your browser and type localhost:3000
