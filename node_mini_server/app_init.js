@@ -12,16 +12,12 @@ function onRequest(request, response) {
     // 서버는 수정한 후에 재시작을 해야한다.
     //console.log(fileJSON);
 
-    var fileHeader = fs.readFileSync('header.html');
-    var fileData = fs.readFileSync('data.dat');
-    var fileFooter = fs.readFileSync('footer.html');
+    var file = fs.readFileSync('index.html');
     //console.log(file);
     
-    response.write(fileHeader);
-    response.write(fileData);
-    response.write(fileFooter);
+    response.write(file);
 
-    //console.log(fileJSON);
+    console.log(fileJSON);
     //response.write('Hello nodejs');
     response.end();
 

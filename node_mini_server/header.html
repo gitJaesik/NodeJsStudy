@@ -122,15 +122,4 @@ Todo.prototype.load = function(text) {
 /** Usage **/
 var list = new Todo();
 
-list.load();
-
-// data processing
-list.addItemWithText("test1");
-list.addItemWithText("test2");
-list.addItemWithText("test3");
-
-// view processing
-document.body.appendChild(list.render());
-</script>
-</body>
-</html>
+list.load(
