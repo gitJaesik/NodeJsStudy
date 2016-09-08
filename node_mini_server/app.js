@@ -1,29 +1,31 @@
-var http = require('http');
-var fs = require('fs');
-var port = process.env.port;
-// process.env // envirnoment
+const http = require('http');
+const fs = require('fs');
 
-var server = http.createServer(onRequest);
-server.listen(port);
+var server = http.createServer(function(request, response) {
 
-function onRequest(request, response) {
-    response.writeHead(200, {'Content-Type' : 'text/html'});
+    var method = request.method;
 
-    // 서버는 수정한 후에 재시작을 해야한다.
-    //console.log(fileJSON);
+    //console.log("test");
 
-    var fileHeader = fs.readFileSync('header.html');
-    var fileData = fs.readFileSync('data.dat');
-    var fileFooter = fs.readFileSync('footer.html');
-    //console.log(file);
-    
-    response.write(fileHeader);
-    response.write(fileData);
-    response.write(fileFooter);
+    if (method == "POST") {
+        // 숙제에서 생략
+    } else if (method == "GET") {
+        // fs.read ...
+        // response.write ...
+        // response.end()
+        console.log("hi3");
+		var fileHeader = fs.readFileSync('header.html');
+    	var fileData = fs.readFileSync('data.dat');
+    	var fileFooter = fs.fs.readFileSync(path, options);nc('footer.html');
+	    response.write(fileHeader);
+    	response.write(fileData);
+    	response.write(fileFooter);
 
-    //console.log(fileJSON);
-    //response.write('Hello nodejs');
-    response.end();
+	    response.end();
 
-}
-
+    } else {
+        // 숙제에서 생략
+        console.log("hi2");
+    }
+});
+server.listen(3000);

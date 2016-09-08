@@ -6,12 +6,16 @@
 
 <script>
 /** Item class **/
-var TodoItem = function(text, index){
+var TodoItem = function(text, index){ // Object로 부터 생성시 new TodoItem({text:"aaa", ...});
     // data
-    this.text = text;
-    this.done = false;
-    this.index = index;
-    this.date = new Date();
+    if (typeof text == "object") {
+        this.unserialize(text);
+    } else {
+        this.text = text;
+        this.done = false;
+        this.index = index;
+        this.date = new Date();
+    }
 
     // view
     this.$view = document.createElement("li");
@@ -28,6 +32,21 @@ TodoItem.prototype.toggle = function(){
 }
 TodoItem.prototype.updateWithText = function(text){
     this.text = text;
+    return this;
+}
+TodoItem.prototype.serialize = function(){
+    return {
+        text: this.text,
+        done: this.done,
+        index: this.index,
+        date: this.date
+    };
+}
+TodoItem.prototype.unserialize = function(obj){
+    this.text = obj.text;
+    this.done = obj.done;
+    this.index = obj.index;
+    this.date = new Date(obj.date);
     return this;
 }
 
@@ -68,15 +87,6 @@ Todo.prototype.addItemWithText = function(text){
     this.items.push(item);
     return this;
 }
-Todo.prototype.doneOdds = function(){
-    for (var i=0; i<this.items.length; i++){
-        if (i%2 == 1) {
-            var item = this.items[i];
-            item.toggle();
-        }
-    }
-    return this;
-}
 Todo.prototype.removeItemByIndex = function(index){
     this.items.splice(index, 1);
     return this;
@@ -85,12 +95,19 @@ Todo.prototype.clear = function(){
     this.items = [];
     return this;
 }
-Todo.prototype.printDoneItems = function(){
-    for (var i=0; i<this.items.length; i++) {
-        var item = this.items[i];
-        if (item.done) {
-            console.log(item);
-        }
+Todo.prototype.serialize = function(){
+    var serializedItems = [];
+    for (var k in this.items) {
+        var serializedItem = this.items[k].serialize();
+        serializedItems.push(serializedItem);
+    }
+    return serializedItems;
+}
+Todo.prototype.unserialize = function(arr){
+    // JSON을 받아 TodoItem instance들을 생성하여 this.items에 넣기
+    for (var k in arr) {
+        var item = new TodoItem(arr[k]);
+        this.items.push(item);
     }
     return this;
 }
@@ -106,6 +123,9 @@ Todo.prototype.render = function(){
         this.$view.appendChild(item.render());
     }
 
+    return this;
+}
+Todo.prototype.getView = function(){
     return this.$view;
 }
 
@@ -115,22 +135,17 @@ Todo.prototype.clickHandler = function(item){
     this.render();
 }
 
-Todo.prototype.load = function(text) {
-	console.log(text);
-}
 
 /** Usage **/
 var list = new Todo();
 
-list.load();
-
 // data processing
-list.addItemWithText("test1");
-list.addItemWithText("test2");
-list.addItemWithText("test3");
+var json = /**파일데이터를 이부분에 삽입**/;
+list.unserialize(json);
 
 // view processing
-document.body.appendChild(list.render());
+list.render();
+document.body.appendChild(list.getView());
 </script>
 </body>
 </html>

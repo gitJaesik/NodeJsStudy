@@ -1,12 +1,9 @@
-);
-
-// data processing
-list.addItemWithText("test1");
-list.addItemWithText("test2");
-list.addItemWithText("test3");
+;
+list.unserialize(json);
 
 // view processing
-document.body.appendChild(list.render());
+list.render();
+document.body.appendChild(list.getView());
 </script>
 </body>
 </html>
