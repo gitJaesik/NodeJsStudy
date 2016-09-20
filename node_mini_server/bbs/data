@@ -1,7 +1,3 @@
-message=test
-message=111
-message=test
-message=zz
-message=test
-message=zz
-message=aa%0D%0A
+messageTest=hi
+messageTest=gg
+messageTest=test

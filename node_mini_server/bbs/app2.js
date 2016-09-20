@@ -8,7 +8,12 @@ var static = {
 var server = http.createServer(function(request, response) {
 	var url = request.method + " " + request.url;
 
-	if (url == "POST /upload") {
+// src 는 Get방식 
+	if (url == "GET /script.js"){
+		var script = fs.readFileSync(__dirname+"/script.js").toString();
+		response.setHeader("Content-type","javascript; charset=utf-8");
+		response.write(script);
+	} else if (url == "POST /upload") {
 		var body = [];
 		request.on('data', function(chunk) {
 			body.push(chunk);
@@ -24,7 +29,6 @@ var server = http.createServer(function(request, response) {
 		response.setHeader("Location", "/upload");
 		response.stateMessage = "Move permanetly";
 		response.statusCode = 301;
-
 	} else if (url == "GET /favicon.ico") {
 		response.statusCode = 404;
 		response.stateMessage = "Not Found";
@@ -51,7 +55,7 @@ var server = http.createServer(function(request, response) {
 					response.write(dataArr[i]);
 					response.write("</li>");
 					*/
-					message += "<li>" + dataArr[i].replace("message=", "<b>message:</b> ") + "</li>";
+					message += "<li class='list-group-item'>" + dataArr[i].replace("messageTest=", "<b>message:</b> ") + "</li>";
 				}
 			}
 		}
