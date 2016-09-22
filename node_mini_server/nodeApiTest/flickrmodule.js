@@ -1,5 +1,5 @@
 const http = require('https');
-const apiUrl = "https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=2ce73bc2244005400b6e36dfab7282f3&format=json&nojsoncallback=1&api_sig=8ab859e3897aba07f9929bb18d5dbf74";
+const apiUrl = "https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=46a247f7ad0611a92fa3bf67a931c5db&format=json&nojsoncallback=1";
 const querystring = require('querystring');
 
 
@@ -41,6 +41,6 @@ function getFlickrPhotos(callback) {
 }
 
 getFlickrPhotos((res)=>{
-	console.log(res[0]);
+	//console.log(res[0]);
 });
 
