@@ -1,0 +1,11 @@
+<% include header %>
+	<%
+		photoArr.forEach((photo) => {
+
+
+	%>
+		<img src="<%=photo.small%>" alt="<%=photo.title%>">
+	<%		
+		});
+	%>
+<% include footer %>

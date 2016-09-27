@@ -1,0 +1,17 @@
+<html>
+	<head>
+		<title><%=title%></title>
+	</head>
+	<body>
+	<%
+		photoArr.forEach((photo) => {
+
+		
+	%>
+		<img src="<%=photo.medium%>" alt="<%=photo.title%>">
+	<%		
+		});
+	%>
+	</body>
+
+</html>

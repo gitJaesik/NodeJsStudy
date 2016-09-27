@@ -26,6 +26,7 @@ function getFlickrPhotos(callback) {
   		var title = photo.title;
   		var small = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_s.jpg`;
   		var medium = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg`;
+      var large = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_z.jpg`;
   		var PhotoData = {title:title, small:small, medium:medium};
   		arr.push(PhotoData);
   	}
