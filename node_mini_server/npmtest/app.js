@@ -50,14 +50,20 @@ app.get('/large', (req,res) => {
 	});
 });
 
+app.get('/ajax', (req, res) => {
+	res.render('ajax.ejs', {
+		title: app.locals.title
+	});
+});
+
 app.get('/json', (req, res) => {
 
 
 	//res.send('/json');
 
-	// flickr.getFlickrPhotos((photoArr) => {
-	// 	res.json(photoArr);
-	// });
+	flickr.getFlickrPhotos((photoArr) => {
+		res.json(photoArr);
+	});
 
 	// flickr.getFlickrPhotos((photoArr) => {
 	// 	res.render('index.ejs', photoArr);
