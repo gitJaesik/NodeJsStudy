@@ -1,20 +1,20 @@
 
 
-		<% if (member) { %>
-			<form id="form" class="navbar-form navbar-left" action="/logout" method="post">
-				<b> hello <%=member.name%>
-				<button class="btn btn-default" type="submit"> logout </button>
-			</form>
-		<% } else{ %>
-			<form id="form" class="navbar-form navbar-left" action="/login" method="post">
+<% if(member) { %>
+	<form id="formLogout" class="navbar-form navbar-left" action="/logout" method="get">
+		<span > hello <b style="Color:red;"><%=member.name%></b></span>
+		<button class="btn btn-default" type="submit"> logout </button>
+	</form>
 
+<% } else{ %>
+	<form id="formLogin" class="navbar-form navbar-left" action="/login" method="post">
 
-				<input class="form-control" name="userid" id="userid" type="text">
-				<input class="form-control" name="password" id="password" type="password">
+		<input class="form-control" name="userid" id="userid" type="text">
+		<input class="form-control" name="password" id="password" type="password">
 
-				<button class="btn btn-default" type="submit"> send user name </button>
-			</form>
-		<% } %>
+		<button class="btn btn-default" type="submit"> send user name </button>
+	</form>
+<% } %>
 
 
 </body>

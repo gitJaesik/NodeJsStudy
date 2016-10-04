@@ -1,23 +1,23 @@
 <% include header %>
 
-<form id="formWrite" action="/write" method="post">
+<form id="formWrite" action=<%="/update/"+rows.articleid%> method="post">
 	<div class="form-group">
 		<label for="userid"> User : <b style="Color:red;"><%=member.name %></b> 님</label>
 	</div>
 	<div class="form-group">
 		<label for="title">Title</label>
-		<textarea id="title" name="title" class="form-control" rows="1" ><%- old ? old.title : "" %></textarea>
+		<textarea id="title" name="title" class="form-control" rows="1" ><%- rows.title %></textarea>
 	</div>
 	<div class="form-group">
 		<label for="content">Content</label>
-		<textarea class="form-control" id="content" name="content" ><%- old ? old.content : "" %></textarea>
+		<textarea class="form-control" id="content" name="content" ><%- rows.text %></textarea>
 	</div>
 
 	<a href="/" class="btn btn-default">Cancel</a>
 	<button type="submit" class="btn btn-default">Submit</button>
 </form>
 
-<% if(error=="write") {
+<% if(error=="update") {
 	%>
 	<p style="Color:red"> 제목과 내용을 입력하세요. </p>
 	<%

@@ -1,11 +1,67 @@
 <% include header %>
-	<!-- <%=rows%> rows 보는 것--> 
+	<br />
 	<table class="table">
+		<p><b> 게시판 부분 </b></p>
+		<tr> <th> Article no. </th> <th> user name </th> <th> title </th> <th> content </th> <th> update </th> <th> delete </th> </tr>
 		<%
-			rows.forEach((row)=>{
+			rowsForArticles.forEach((row)=>{
 				%>
 				<tr><td>
-				<%=row.id%>
+				<%=row.articleid%>
+				</td>
+				<td>
+				 <%=row.name%>
+				</td>
+				<td>
+				 <%=row.title%>
+				</td>
+				<td>
+				 <%=row.text%>
+				</td>
+				<td>
+					<% if (member) { %>
+						<% if(member.name == row.name || member.role == "admin") {
+						%>
+							<form id="formUpdate" action=<%="/update/" +row.articleid %> method="get">
+								<button type="submit">update</button>
+							</form>
+
+						<%
+						}%>
+					<% } %>
+				</td>
+				<td>
+					<% if (member) { %>
+						<% if(member.name == row.name || member.role == "admin") {
+						%>
+							<form id="formDelete" action=<%="/delete/" +row.articleid %> method="get">
+								<button type="submit">delete</button>
+							</form>
+
+						<%
+						}%>
+					<% } %>
+
+				</td>
+				</tr>
+
+				<%
+			});
+		%>
+		
+	</table>
+	<br />
+	<br />
+	<br />
+
+
+	<table class="table">
+		<p><b> 유저 아이디 부분 </b></p>
+		<%
+			rowsForUsers.forEach((row)=>{
+				%>
+				<tr><td>
+				<%=row.userid%>
 				</td><td>
 				 <%=row.name%>
 				</td>
@@ -16,5 +72,14 @@
 		%>
 		
 	</table>
+
+	<% if (member) { %>
+		<form id="formWrite" class="navbar-form navbar-left" action="/write" method="get">
+			<button class="btn btn-default" type="submit"> 글쓰기 </button>
+		</form>
+		<br />
+		<br />
+		<br />
+	<% } %>
 
 <% include footer %>
