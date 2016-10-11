@@ -1,0 +1,11 @@
+<% include header %>
+
+<div>
+<h4><%=article.title%> <small>(<%=article.user.username%>)</small></h4>
+<pre>
+<%=article.text%>
+</pre>
+<a href="/delete/<%=article.id%>">delete</a>
+</div>
+
+<% include footer %>

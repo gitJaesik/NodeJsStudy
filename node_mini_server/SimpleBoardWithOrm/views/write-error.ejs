@@ -1,0 +1,5 @@
+<h4 style="color:red"><% errors.forEach(err => {
+	if (err.type="Validation error") {
+		%><p><%=err.path%>필드 : <%=err.message%></p><% 
+	}
+})%></h4>

@@ -1,0 +1,9 @@
+<% include header %>
+
+<ul>
+<% articles.forEach(article => { %>
+	<li><a href="/read/<%=article.id%>"><%=article.title%></a> (<%=article.user.username%>)</li>
+<% }); %>
+</ul>
+
+<% include footer %>
