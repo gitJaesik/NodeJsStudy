@@ -266,7 +266,7 @@ app.post('/', (req,res)=> {
 });
 
 // 미들웨어 사용할 때, 앞에 '/api'를 넣어주면 주소가 된다.
-app.use('/api', require('./router-api'));
+//app.use('/api', require('./router-api'));
 
 
 app.listen(3000);

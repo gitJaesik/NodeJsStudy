@@ -7,6 +7,13 @@ router.get('/articles', (req, res) => {
 	// conn.query("SELECT * FROM articles", (err, rows, ))
 });
 
+router.post('/articles', common.bodyParser, (req,res) => {
+	if (!req.session.user) {
+		throw new Error("Not Authorized");
+	}
+
+	let error = {error:false, fields:{}};
+});
 
 module.exports = router;
 
