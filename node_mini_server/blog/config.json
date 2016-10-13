@@ -1,0 +1,5 @@
+{
+	"session-secret" : "jaesik-blog",
+	"port" : 5000,
+	"favicon" : "favicon.ico"
+}
