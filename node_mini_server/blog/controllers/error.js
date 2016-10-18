@@ -1,3 +1,5 @@
 module.exports = (err,req,res,next)=>{
-	res.status(500).send('Internal Server Error\n' + err.toString());
+	res.status(500).render('blog/404', {
+		status : 500
+	});
 };

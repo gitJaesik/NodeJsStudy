@@ -1,5 +1,15 @@
 {
 	"session-secret" : "jaesik-blog",
 	"port" : 5000,
-	"favicon" : "favicon.ico"
+	"app" : {
+		"title" : "Jaesik Blog",
+		"favicon" : "public/favicon.ico"
+	},
+	"db" : {
+		"mysql" : {
+			"host" : "localhost",
+			"database" : "blog",
+			"password" : "oooo"
+		}
+	}
 }
