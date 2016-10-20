@@ -7,7 +7,7 @@
 	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
 	<script src="js/jquery.min.js"></script>
-	<title><%=app.title%></title>
+	<title><%=blog.title%></title>
 </head>
 <body>
 <div class="banner">
@@ -36,11 +36,11 @@
 		<div class="head-nav">
 			<span class="menu"> </span>
 				<ul class="cl-effect-15">
-					<li class="<% (nav == "") ? "active" : ""%>"><a href="/" data-hover="HOME">HOME</a></li>
-					<li class="<% (nav == "about") ? "active" : ""%>"><a href="/about" data-hover="ABOUT">ABOUT</a></li>
-					<li class="<% (nav == "photos") ? "active" : ""%>"><a href="/photos" data-hover="PHOTOS">PHOTOS</a></li>
-					<li class="<% (nav == "archives") ? "active" : ""%>"><a href="/archives" data-hover="ARCHIVES">ARCHIVES</a></li>
-					<li class="<% (nav == "contact") ? "active" : ""%>"><a href="/contact" data-hover="CONTACT">CONTACT</a></li>
+					<li class="<%=(req.nav == "") ? "active" : ""%>"><a href="/">HOME</a></li>
+					<li class="<%=(req.nav == "about") ? "active" : ""%>"><a href="/about">ABOUT</a></li>
+					<li class="<%=(req.nav == "photos") ? "active" : ""%>"><a href="/photos">PHOTOS</a></li>
+					<li class="<%=(req.nav == "archives") ? "active" : ""%>"><a href="/archives">ARCHIVES</a></li>
+					<li class="<%=(req.nav == "contact") ? "active" : ""%>"><a href="/contact">CONTACT</a></li>
 					<div class="clearfix"> </div>
 				</ul>
 		</div>		 

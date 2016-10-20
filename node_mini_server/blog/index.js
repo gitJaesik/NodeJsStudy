@@ -2,6 +2,7 @@ const path = require('path');
 const config = require(path.join(__dirname, 'config'));
 const express = require('express');
 const app = express();
+const models = require(path.join(__dirname, './models'));	
 
 /** configuration **/
 app.set('views', path.join(__dirname, 'views'));
@@ -25,8 +26,21 @@ app.use((req,res,next)=> {
 		path : req.path,
 		query : req.query
 	};
+
+	
+	// 이 시점에 보통 query 불러오는 것이 끝난다.
+	// models에 대한 require가 한번만 수행되기 때문에 해당 데이타 더 이상 오버헤드가 일어나지 않는다.
+	res.locals.blog = models.blogPlain;
+
 	next();
 });
+
+/** models **/
+// models.Blog.findOne().then(blog=>{
+// 	app.blog = blog;
+// 	app.locals.blog = blog.get({plain:text});
+// });
+
 app.use(require(path.join(__dirname, 'controllers/blog-router')));
 app.use('/admin', require(path.join(__dirname, 'controllers/admin-router')));
 
