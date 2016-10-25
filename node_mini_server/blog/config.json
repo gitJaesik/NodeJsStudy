@@ -1,6 +1,6 @@
 {
 	"session-secret" : "jaesik-blog",
-	"port" : 5001,
+	"port" : 5000,
 	"app" : {
 		"title" : "Jaesik Blog",
 		"favicon" : "public/favicon.ico"

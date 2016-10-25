@@ -2,66 +2,67 @@ const models = require('../models');
 const express = require('express');
 var router = express.Router();
 
-// 새로운 query가 들어왔을 때 DB를 사용하게 하기
 router.use((req,res,next) => {
 	// find blog 1
 	models.Blog.findOne({
-		// include 는 연결된 부분과의 정보를 보여준다.
-		// join
 		include: [
 			models.Blog.associations.aboutPost,
-			models.Blog.associations.logoFile,
-			models.Category
+			models.Blog.associations.logoFile
 		]
 	}).then(blog => {
 		res.blog = blog;
 		res.locals.blog = blog.get({plain:true});
-
-		// json 구조 확인을 위한 부분
-		//res.json(res.local.blog);
 		next();
-	}).catch(err=> {
-		console.log(err);
 	});
 });
 
-
 router.get('/', (req,res) => {
-	// 하기 쿼리를 많이 사용하면 scope를 사용하면 된다.
+	let block = 1,
+			page = parseInt(req.query.page);
 
-	let page = parseInt(req.query.page);
-	page = (isNaN(page) || page < 1) ? 1 : page;
-	 
-	let block = 5;
+	page = (isNaN(page) || page < 1) ? 1: page;
 
-	res.blog.getPosts({
-		include : [
-			models.Category,
-			{
-				model : models.File,
-				where : {
-					type: {
-						$like: 'image/%'
+	Promise.all([
+		res.blog.getPosts({
+			include: [
+				models.Category,
+				{
+					model: models.File,
+					where: {
+						type: {
+							$like: 'image/%'
+						}
 					}
 				}
-			}
-		],
-		offset : (page - 1) * block,
-		limit : block, // 한개만 
-		order: [['id', 'desc'] /*, ['date', 'asc'], models.seq.fn('max',models.seq.col('hit'))*/ ]
-	}).then(posts => {
+			],
+			offset: (page-1)*block,
+			limit: block,
+			order: [['id','desc']]
+		}),
+		
+		res.blog.countPosts()
+	
+	]).then(result => {
 
-		res.render('blog/home',{
-			posts : posts
+		let posts = result[0], count = result[1];
+		posts.page = {
+			entryTotal: count,
+			total: Math.floor(count/block) + (count%block==0 ? 0 : 1),
+			current: page
+		};
+
+		res.render('blog/home', {
+			posts: posts
 		});
 	});
-	// $like 대신 REGEX를 사용하여도 된다.
-
-
 });
 
 router.get('/about', (req,res) => {
 	res.render('blog/about');
+});
+
+router.get('/contact', (req,res) => {
+	res.render('blog/contact');
 });
 
 router.get('/photos', (req,res) => {
@@ -71,11 +72,5 @@ router.get('/photos', (req,res) => {
 router.get('/archives', (req,res) => {
 	res.render('blog/archives');
 });
-
-router.get('/contact', (req,res) => {
-	res.render('blog/contact');
-});
-
-
 
 module.exports = router;

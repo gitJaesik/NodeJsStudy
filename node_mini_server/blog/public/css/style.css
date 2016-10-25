@@ -150,7 +150,7 @@ i.twt:hover {
 }
 .search2 input[type="text"] {
 	outline: none;
-	color: #6f879a;
+	color: #fff;
 	background: none;
 	font-size: 15px;
 	border: none;
@@ -190,15 +190,17 @@ i.twt:hover {
 	line-height: 1.4em;
 	margin:0;
 }
+
 .content ul.list {
 	list-style:none;
 }
 
-/* >는 첫번째 div를 위한 것*/
 .content .sidebar > div {
-	margin-bottom: 5em;
+	margin-bottom: 3em;
 }
-
+.content .sidebar > div a {
+	border-bottom: none;
+}
 
 p.adm {
 	color: #868f98;
@@ -816,12 +818,15 @@ strong {
 .details {
 	padding: 4em 0;
 }
-/*-- --*/
-#myList li{ 
-	display:none;
-	list-style-type:none;
+.page {
+	display:block;
+	margin: 5em 0;
+	text-align:center;
 }
-#loadMore {
+.page > .btn {
+	margin: 0 0.25em !important;
+}
+.btn.blue {
 	color: #fff;
 	cursor: pointer;
 	background: rgb(85, 106, 127);
@@ -830,12 +835,12 @@ strong {
 	margin: 0 10px;
 	display: inline-block;
 }
-#loadMore:hover {
+.btn.blue:hover {
     color:#fff;
     background:#dc8e7f;
     transition:0.5s all;
 }
-#showLess {
+.btn.red {
     cursor:pointer;
 	color:#fff;
     background:#dc8e7f;
@@ -844,7 +849,7 @@ strong {
     margin:0 10px;
     display: inline-block;
 }
-#showLess:hover {
+.btn.red:hover {
 	color: #fff;
     background: rgb(85, 106, 127); 
     transition:0.5s all;
@@ -1222,12 +1227,12 @@ ul.links li.last {
 .header-right {
 	display: none;
 }
-#loadMore {
+.btn.blue {
 	padding: 8px;
 	width: 13%;
 	font-size: 0.875em;
 }
-#showLess{
+.btn.red{
 	padding: 8px;
 	width: 13%;
 	font-size: 0.875em;
@@ -1360,10 +1365,10 @@ div#portfolio {
 #portfoliolist .portfolio {
 	margin: 0.5em 0;
 }
-#loadMore {
+.btn.blue {
 	width: 16%;
 }
-#showLess{
+.btn.red{
 	width: 16%;
 }
 .leave h4 {
@@ -1489,10 +1494,10 @@ a.b-home {
 .portfolio-wrapper.grid_box.last {
 	display: none;
 }
-#loadMore {
+.btn.blue {
 	width: 20%;
 }
-#showLess{
+.btn.red{
 	width: 20%;
 }
 .leave h4 {
@@ -1657,12 +1662,12 @@ strong {
 .details {
 	padding: 2em 0;
 }
-#loadMore {
+.btn.blue {
 	padding: 6px;
 	width: 26%;
 	font-size: 0.8125em;
 }
-#showLess{
+.btn.red{
 	padding: 6px;
 	width: 26%;
 	font-size: 0.8125em;
