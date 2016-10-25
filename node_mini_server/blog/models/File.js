@@ -1,14 +1,14 @@
 module.exports = (seq, Seq) => {
   return seq.define("file", {
     name: {
-    	type: Seq.STRING,
-    	allowNull: false,
-    	validate: {notEmpty: true}
+        type: Seq.STRING,
+        allowNull: false,
+        validate: {notEmpty: true}
     },
     type: {
-    	type: Seq.STRING,
+        type: Seq.STRING,
         allowNull: false,
-    	validate: {notEmpty: true}
+        validate: {notEmpty: true}
     },
     path: {
         type: Seq.STRING,
@@ -16,7 +16,7 @@ module.exports = (seq, Seq) => {
         validate: {notEmpty: true}
     },
     hit: {
-    	type: Seq.INTEGER,
+        type: Seq.INTEGER,
         defaultValue: 0
     }
   }, {

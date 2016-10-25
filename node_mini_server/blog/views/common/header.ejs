@@ -7,14 +7,14 @@
 	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
 	<script src="js/jquery.min.js"></script>
-	<title><%=blog.title%></title>
+	<title><%=blog.name%></title>
 </head>
 <body>
 <div class="banner">
 	<div class="container">
 		<div class="header">
 			<div class="logo">
-				<a href="index.html"><img src="images/logo.png" class="img-responsive" alt="" /></a>
+				<a href="index.html"><img src="<%=blog.logoFile.path%>" class="img-responsive" alt="" /></a>
 			</div>
 			<div class="header-right">
 				<ul>

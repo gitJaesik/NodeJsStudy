@@ -190,6 +190,16 @@ i.twt:hover {
 	line-height: 1.4em;
 	margin:0;
 }
+.content ul.list {
+	list-style:none;
+}
+
+/* >는 첫번째 div를 위한 것*/
+.content .sidebar > div {
+	margin-bottom: 5em;
+}
+
+
 p.adm {
 	color: #868f98;
 	font-size: 1em;
