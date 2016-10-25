@@ -41,13 +41,13 @@ if (process.env.DROP) {
 		models.Blog.create({
 			user_id: 'admin',
 			password: '1234',
-			name: 'dongwook',
-			facebook_url: 'http://facebook.com/kdw91',
-			email: 'dehypnosis@gmail.com',
+			name: 'jaesik',
+			facebook_url: 'http://facebook.com/jaesik.phee',
+			email: 'maguire1815@gmail.com',
 			lat: 37.4814876,
 			lang: 126.9500579,
-			fax: '02-4477-6418',
-			phone: '01044776418',
+			fax: '02-2054-4620',
+			phone: '01020544620',
 			contact_text: 'Hello!'
 
 		// category
