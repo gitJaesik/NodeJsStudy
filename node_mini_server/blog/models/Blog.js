@@ -51,6 +51,7 @@ module.exports = (seq, Seq) => {
         models.Blog.hasMany(models.File);
         models.Blog.hasMany(models.Post);
         models.Blog.hasMany(models.Category);
+        models.Blog.hasMany(models.Comment);
 
         models.Blog.belongsTo(models.Post, {as: 'aboutPost', constraints: false, foreignKey: 'fk_about_post_blog_id'});
         models.Blog.belongsTo(models.File, {as: 'logoFile', constraints: false, foreignKey: 'fk_logo_file_blog_id'});

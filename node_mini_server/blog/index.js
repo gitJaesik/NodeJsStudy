@@ -10,6 +10,7 @@ app.set('view engine', 'ejs');
 app.locals.app = config.app;
 
 
+
 /** middlewares **/
 app.use(require(path.join(__dirname,'controllers/logger')));
 app.use(express.static(path.join(__dirname,'public')));

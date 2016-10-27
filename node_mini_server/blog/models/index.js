@@ -120,17 +120,21 @@ if (process.env.DROP) {
 							name: '문모씨',
 							email: 'test@test.com',
 							contents: '댓글요',
+							blog_id: 1
+
 						}, {
 							post_id: post.id,
 							name: '김모씨',
 							email: 'test2@test.com',
 							contents: '댓글2요',
+							blog_id: 1
 						}, {
 							post_id: post.id,
 							comment_id: 1,
 							name: '김모씨',
 							email: 'test2@test.com',
 							contents: '1번 댓글에 대댓글요',
+							blog_id: 1
 						}]),
 						post.setFiles([1,2]),
 						post.setTags([1,2])
@@ -152,23 +156,80 @@ if (process.env.DROP) {
 							name: '문2모씨',
 							email: 'test@test.com',
 							contents: '댓2글요',
+							blog_id: 1
 						}, {
 							post_id: post.id,
 							name: '김2모씨',
 							email: 'test2@test.com',
 							contents: '댓2글2요',
+							blog_id: 1
 						}, {
 							post_id: post.id,
 							comment_id: 5,
 							name: '김2모씨',
 							email: 'test2@test.com',
 							contents: '2번 댓글에 대댓글요',
+							blog_id: 1
 						}]),
 						post.setFiles([2]),
 						post.setTags([3]),
 					]);
 				}),
 
+				// post 3
+				models.Post.create({
+					title: 'post3',
+					contents: 'post3 contents',
+					category_id: 2,
+					blog_id: 1
+				}).then(post => {
+
+					// post 3 comments and files and tags
+					return Promise.all([
+						models.Comment.bulkCreate([{
+							post_id: post.id,
+							name: '피3모씨',
+							email: 'test@test.com',
+							contents: '댓2글요',
+							blog_id: 1
+						}, {
+							post_id: post.id,
+							name: '김3모씨',
+							email: 'test2@test.com',
+							contents: '댓2글2요',
+							blog_id: 1
+						}]),
+						post.setFiles([2]),
+						post.setTags([3]),
+					]);
+				}),
+
+				// post 4
+				models.Post.create({
+					title: 'post4',
+					contents: 'post4 contents',
+					blog_id: 1
+				}).then(post => {
+
+					// post 3 comments and files and tags
+					return Promise.all([
+						models.Comment.bulkCreate([{
+							post_id: post.id,
+							name: '피4모씨',
+							email: 'test@test.com',
+							contents: '댓2글요',
+							blog_id: 1
+						}, {
+							post_id: post.id,
+							name: '김4모씨',
+							email: 'test2@test.com',
+							contents: '댓2글2요',
+							blog_id: 1
+						}]),
+						post.setFiles([2]),
+						post.setTags([3]),
+					]);
+				}),
 				// blog logo file and about post
 				blog.setLogoFile(2),
 				blog.setAboutPost(2)
